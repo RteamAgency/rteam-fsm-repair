@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_repair_order_form_fsm_visits" model="ir.ui.view">
+        <field name="name">repair.order.form.fsm.visits</field>
+        <field name="model">repair.order</field>
+        <field name="inherit_id" ref="repair.view_repair_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button name="action_view_fsm_tasks"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-truck"
+                        invisible="fsm_task_count == 0">
+                    <field name="fsm_task_count" widget="statinfo" string="Field Visits"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

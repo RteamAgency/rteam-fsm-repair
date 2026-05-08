@@ -56,6 +56,17 @@ class ProjectTask(models.Model):
     x_signed_by = fields.Char(string="Signed By (Customer Name)")
     x_signed_at = fields.Datetime(string="Signed At", readonly=True)
 
+    x_repair_order_id = fields.Many2one(
+        comodel_name="repair.order",
+        string="Repair Order",
+        tracking=True,
+        index=True,
+        help=(
+            "Persistent repair case this on-site visit belongs to. One repair "
+            "order can span multiple FSM visits + in-shop work + RMA escalation."
+        ),
+    )
+
     @api.onchange("x_customer_signature")
     def _onchange_customer_signature(self):
         for rec in self:
@@ -76,6 +87,49 @@ class ProjectTask(models.Model):
         if not action:
             return base
         return f"{base}/odoo/action-{action.id}/{self.id}"
+
+    def action_create_repair_order(self):
+        """Create a new repair.order from this FSM task and link them.
+
+        Pre-fills customer + product (if equipment has one resolvable via lot)
+        + lot/serial. Opens the new repair.order in form view for the user
+        to complete (parts, schedule, etc.).
+        """
+        self.ensure_one()
+        if self.x_repair_order_id:
+            return self.action_open_repair_order()
+        repair_vals = {
+            "partner_id": self.partner_id.id if self.partner_id else False,
+            "company_id": self.company_id.id,
+            "user_id": self.env.user.id,
+            "internal_notes": self.x_problem_description or False,
+        }
+        if self.x_serial_lot_id:
+            repair_vals["lot_id"] = self.x_serial_lot_id.id
+            repair_vals["product_id"] = self.x_serial_lot_id.product_id.id
+        repair = self.env["repair.order"].create(repair_vals)
+        self.x_repair_order_id = repair.id
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Repair Order"),
+            "res_model": "repair.order",
+            "res_id": repair.id,
+            "view_mode": "form",
+            "target": "current",
+        }
+
+    def action_open_repair_order(self):
+        self.ensure_one()
+        if not self.x_repair_order_id:
+            raise UserError(_("This task is not linked to any Repair Order."))
+        return {
+            "type": "ir.actions.act_window",
+            "name": _("Repair Order"),
+            "res_model": "repair.order",
+            "res_id": self.x_repair_order_id.id,
+            "view_mode": "form",
+            "target": "current",
+        }
 
     def action_send_repair_protocol(self):
         self.ensure_one()

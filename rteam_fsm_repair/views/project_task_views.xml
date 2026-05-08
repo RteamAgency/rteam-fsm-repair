@@ -6,6 +6,18 @@
         <field name="model">project.task</field>
         <field name="inherit_id" ref="project.view_task_form2"/>
         <field name="arch" type="xml">
+            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+                <button name="action_open_repair_order"
+                        type="object"
+                        class="oe_stat_button"
+                        icon="fa-wrench"
+                        invisible="not x_repair_order_id">
+                    <div class="o_stat_info">
+                        <field name="x_repair_order_id" class="o_stat_text"/>
+                        <span class="o_stat_text">Repair Case</span>
+                    </div>
+                </button>
+            </xpath>
             <xpath expr="//notebook" position="inside">
                 <page string="Repair" name="repair_page" invisible="not is_fsm">
                     <group>
@@ -16,6 +28,12 @@
                             <field name="x_serial_lot_id" options="{'no_create': True}"/>
                         </group>
                         <group>
+                            <field name="x_repair_order_id" options="{'no_create_edit': True}"/>
+                            <button name="action_create_repair_order"
+                                    type="object"
+                                    string="Create Repair Order"
+                                    class="btn-secondary"
+                                    invisible="x_repair_order_id"/>
                             <field name="x_signed_by"/>
                             <field name="x_signed_at"/>
                         </group>

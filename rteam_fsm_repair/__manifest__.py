@@ -1,6 +1,6 @@
 {
     "name": "Rteam FSM Repair Workflow",
-    "version": "19.0.1.0.5",
+    "version": "19.0.2.0.0",
     "post_init_hook": "_post_init_hook",
     "category": "Services/Field Service",
     "summary": (
@@ -43,12 +43,14 @@ License: LGPL-3, free.
         "helpdesk_fsm",
         "maintenance",
         "stock",
+        "repair",
         "mail",
     ],
     "data": [
         "reports/report_protocol_template.xml",
         "data/mail_template_data.xml",
         "views/project_task_views.xml",
+        "views/repair_order_views.xml",
     ],
     "demo": [],
     "installable": True,
