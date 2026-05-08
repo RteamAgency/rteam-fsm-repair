@@ -1,6 +1,6 @@
 {
     "name": "Rteam FSM Repair Workflow",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "category": "Services/Field Service",
     "summary": (
         "Repair flow on top of Field Service: request types, equipment, "
