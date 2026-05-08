@@ -1,3 +1,5 @@
+# Part of Rteam FSM Repair Workflow. See LICENSE file for full copyright and licensing details.
+
 from odoo import _, api, fields, models
 from odoo.exceptions import UserError
 
@@ -59,6 +61,21 @@ class ProjectTask(models.Model):
         for rec in self:
             if rec.x_customer_signature and not rec.x_signed_at:
                 rec.x_signed_at = fields.Datetime.now()
+
+    def _action_url(self):
+        """Return a deep-link to this task's form view (used by mail templates)."""
+        self.ensure_one()
+        base = self.get_base_url()
+        action = self.env.ref(
+            "industry_fsm.project_task_action_fsm",
+            raise_if_not_found=False,
+        ) or self.env.ref(
+            "project.action_view_task",
+            raise_if_not_found=False,
+        )
+        if not action:
+            return base
+        return f"{base}/odoo/action-{action.id}/{self.id}"
 
     def action_send_repair_protocol(self):
         self.ensure_one()

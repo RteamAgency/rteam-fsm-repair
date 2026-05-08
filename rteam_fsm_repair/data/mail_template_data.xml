@@ -14,7 +14,10 @@
         <field name="auto_delete" eval="False"/>
         <field name="body_html" type="html">
             <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
-                <p>Шановний(а) <t t-out="object.partner_id.name or 'Клієнт'"/>,</p>
+                <div style="display:inline-block;padding:4px 12px;background:#1f7a8c;color:#fff;font-weight:bold;border-radius:3px;font-size:12px;letter-spacing:0.5px">
+                    REPAIR PROTOCOL
+                </div>
+                <p style="margin-top:16px">Шановний(а) <t t-out="object.partner_id.name or 'Клієнт'"/>,</p>
                 <p>
                     У вкладенні - Протокол виконаних робіт за заявкою
                     <strong t-out="object.name"/>
@@ -27,6 +30,12 @@
                     <t t-out="object.user_ids[:1].name or '-'"/>
                     та клієнтом
                     <t t-out="object.x_signed_by or object.partner_id.name or '-'"/>.
+                </p>
+                <p style="margin:24px 0">
+                    <a t-att-href="object._action_url()"
+                       style="display:inline-block;padding:8px 16px;background:#1f7a8c;color:#fff;text-decoration:none;border-radius:3px;font-weight:bold">
+                        View in Odoo
+                    </a>
                 </p>
                 <p>
                     З повагою,<br/>
