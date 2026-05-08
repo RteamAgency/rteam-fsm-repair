@@ -3,6 +3,18 @@
 All notable changes to this module are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 1.0.1 - 2026-05-08 - Store assets aligned with Rteam family design
+
+### Changed
+
+- Store icon (`static/description/icon.png`) and banner
+  (`static/description/banner.png`) redesigned to match the Light + Gradient
+  identity used by Odoo Health Check and Rteam AI Bot listings: violet-to-teal
+  signature gradient on the F monogram, solid teal `+` marker, light surface
+  background with violet/teal blob auras, "by Rteam" gradient attribution.
+- Banner right side: 4 feature tiles (Tablet signatures, FSM <-> Repair bridge,
+  Multi-visit cases, Ukrainian localization) replacing the prior bullet list.
+
 ## 1.0.0 - 2026-05-08 - Initial public release
 
 First release on apps.odoo.com.
