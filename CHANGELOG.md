@@ -3,6 +3,16 @@
 All notable changes to this module are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 1.1.1 - 2026-05-08 - Fix: encode non-ASCII as numeric HTML entities
+
+### Fixed
+
+- `static/description/index.html`: all non-ASCII characters (Cyrillic
+  language names, German umlauts, Spanish &ntilde;, Romanian &abreve;,
+  Arabic) converted to numeric HTML entities (`&#NNNN;`). The
+  apps.odoo.com listing chrome mis-decodes raw UTF-8 in the description
+  page and renders Cyrillic / Arabic as garbled Latin-1 sequences.
+
 ## 1.1.0 - 2026-05-08 - Multi-language localization + Technical Reference
 
 ### Added
