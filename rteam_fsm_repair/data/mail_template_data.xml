@@ -8,7 +8,6 @@
         <field name="email_from">{{ (object.user_ids[:1].email_formatted or object.company_id.email_formatted) }}</field>
         <field name="partner_to">{{ object.partner_id.id if object.partner_id else '' }}</field>
         <field name="description">Sent to the customer when the engineer closes a repair visit with both signatures captured.</field>
-        <field name="report_template_ids" eval="[(4, %(action_report_repair_protocol)d)]"/>
         <field name="report_name">Protocol-{{ (object.name or '').replace('/', '_') }}</field>
         <field name="lang">{{ object.partner_id.lang or 'uk_UA' }}</field>
         <field name="auto_delete" eval="False"/>
