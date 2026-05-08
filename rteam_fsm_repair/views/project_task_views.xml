@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_task_form_repair" model="ir.ui.view">
+        <field name="name">project.task.form.fsm.repair</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_form2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook" position="inside">
+                <page string="Repair" name="repair_page" invisible="not is_fsm">
+                    <group>
+                        <group>
+                            <field name="x_request_type"/>
+                            <field name="x_equipment_id" options="{'no_create': True}"/>
+                            <field name="x_equipment_product_id" invisible="1"/>
+                            <field name="x_serial_lot_id"
+                                   options="{'no_create': True}"
+                                   domain="[('product_id', '=', x_equipment_product_id)]"/>
+                        </group>
+                        <group>
+                            <field name="x_signed_by"/>
+                            <field name="x_signed_at"/>
+                        </group>
+                    </group>
+                    <group string="Problem Description">
+                        <field name="x_problem_description" nolabel="1" colspan="2"/>
+                    </group>
+                    <group string="Engineer Findings">
+                        <field name="x_findings" nolabel="1" colspan="2"/>
+                    </group>
+                    <group string="Resolution / Work Done">
+                        <field name="x_resolution" nolabel="1" colspan="2"/>
+                    </group>
+                    <group string="Signatures (Tablet)">
+                        <group>
+                            <field name="x_engineer_signature"
+                                   widget="signature"
+                                   nolabel="1"/>
+                            <label for="x_engineer_signature" string="Engineer"/>
+                        </group>
+                        <group>
+                            <field name="x_customer_signature"
+                                   widget="signature"
+                                   nolabel="1"/>
+                            <label for="x_customer_signature" string="Customer"/>
+                        </group>
+                    </group>
+                    <div class="oe_button_box" name="repair_buttons">
+                        <button name="action_send_repair_protocol"
+                                type="object"
+                                string="Send Repair Protocol"
+                                class="btn-primary"
+                                invisible="not x_customer_signature"/>
+                    </div>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_task_kanban_request_type" model="ir.ui.view">
+        <field name="name">project.task.kanban.request.type</field>
+        <field name="model">project.task</field>
+        <field name="inherit_id" ref="project.view_task_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//templates" position="before">
+                <field name="x_request_type"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

@@ -1,0 +1,78 @@
+name: ci
+
+on:
+  push:
+    branches: [main, "17.0", "18.0", "19.0"]
+  pull_request:
+    branches: [main, "17.0", "18.0", "19.0"]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install ruff
+        run: pip install ruff==0.6.9
+
+      - name: Ruff check
+        run: ruff check rteam_fsm_repair
+
+      - name: Ruff format check
+        run: ruff format --check rteam_fsm_repair
+
+  manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate manifest is parseable Python
+        run: python -c "import ast; ast.parse(open('rteam_fsm_repair/__manifest__.py').read())"
+
+      - name: Validate manifest required keys
+        run: |
+          python <<'PY'
+          import ast
+          tree = ast.parse(open("rteam_fsm_repair/__manifest__.py").read())
+          assert isinstance(tree.body[0], ast.Expr)
+          d = ast.literal_eval(tree.body[0].value)
+          required = {"name", "version", "license", "author", "depends", "data", "category"}
+          missing = required - set(d.keys())
+          assert not missing, f"Manifest missing keys: {missing}"
+          assert d["license"] in ("LGPL-3", "OPL-1", "AGPL-3"), f"License: {d['license']}"
+          print("Manifest OK")
+          PY
+
+      - name: Validate XML data files parse
+        run: |
+          python <<'PY'
+          import xml.etree.ElementTree as ET
+          import glob
+          for path in glob.glob("rteam_fsm_repair/**/*.xml", recursive=True):
+              try:
+                  ET.parse(path)
+                  print(f"OK {path}")
+              except ET.ParseError as e:
+                  print(f"FAIL {path}: {e}")
+                  raise
+          PY
+
+  syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile all .py files
+        run: python -m compileall -q rteam_fsm_repair

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo noupdate="1">
+
+    <record id="mail_template_repair_protocol" model="mail.template">
+        <field name="name">FSM: Repair Protocol</field>
+        <field name="model_id" ref="project.model_project_task"/>
+        <field name="subject">Протокол виконаних робіт - {{ object.name }}</field>
+        <field name="email_from">{{ (object.user_ids[:1].email_formatted or object.company_id.email_formatted) }}</field>
+        <field name="partner_to">{{ object.partner_id.id if object.partner_id else '' }}</field>
+        <field name="description">Sent to the customer when the engineer closes a repair visit with both signatures captured.</field>
+        <field name="report_template_ids" eval="[(4, ref('rteam_fsm_repair.action_report_repair_protocol'))]"/>
+        <field name="report_name">Protocol-{{ (object.name or '').replace('/', '_') }}</field>
+        <field name="lang">{{ object.partner_id.lang or 'uk_UA' }}</field>
+        <field name="auto_delete" eval="False"/>
+        <field name="body_html" type="html">
+            <div style="font-family: Arial, sans-serif; font-size: 14px; color: #333;">
+                <p>Шановний(а) <t t-out="object.partner_id.name or 'Клієнт'"/>,</p>
+                <p>
+                    У вкладенні - Протокол виконаних робіт за заявкою
+                    <strong t-out="object.name"/>
+                    <t t-if="object.x_equipment_id">
+                        на обладнання <strong t-out="object.x_equipment_id.name"/>
+                    </t>.
+                </p>
+                <p>
+                    Документ підписано на місці інженером
+                    <t t-out="object.user_ids[:1].name or '-'"/>
+                    та клієнтом
+                    <t t-out="object.x_signed_by or object.partner_id.name or '-'"/>.
+                </p>
+                <p>
+                    З повагою,<br/>
+                    <t t-out="object.company_id.name"/>
+                </p>
+            </div>
+        </field>
+    </record>
+
+</odoo>

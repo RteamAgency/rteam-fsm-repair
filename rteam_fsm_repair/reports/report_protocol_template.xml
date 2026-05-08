@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="action_report_repair_protocol" model="ir.actions.report">
+        <field name="name">Repair Protocol</field>
+        <field name="model">project.task</field>
+        <field name="report_type">qweb-pdf</field>
+        <field name="report_name">rteam_fsm_repair.report_repair_protocol</field>
+        <field name="report_file">rteam_fsm_repair.report_repair_protocol</field>
+        <field name="binding_model_id" ref="project.model_project_task"/>
+        <field name="binding_type">report</field>
+        <field name="print_report_name">'Protocol - %s' % (object.name)</field>
+    </record>
+
+    <template id="report_repair_protocol_document">
+        <t t-call="web.external_layout">
+            <div class="page">
+                <h2>Протокол виконаних робіт</h2>
+                <h4 t-out="doc.name"/>
+
+                <div class="row mt32 mb32">
+                    <div class="col-6">
+                        <strong>Замовник:</strong><br/>
+                        <span t-out="doc.partner_id.name or '-'"/><br/>
+                        <span t-out="doc.partner_id.contact_address or ''"/>
+                    </div>
+                    <div class="col-6">
+                        <strong>Виконавець:</strong><br/>
+                        <span t-out="doc.user_ids[:1].name or '-'"/><br/>
+                        <strong>Дата:</strong>
+                        <span t-out="doc.x_signed_at or doc.date_deadline or ''"/>
+                    </div>
+                </div>
+
+                <div class="row mt16 mb16">
+                    <div class="col-6">
+                        <strong>Тип звернення:</strong>
+                        <span t-field="doc.x_request_type"/>
+                    </div>
+                    <div class="col-6">
+                        <strong>Обладнання:</strong>
+                        <span t-out="doc.x_equipment_id.name or '-'"/>
+                        <t t-if="doc.x_serial_lot_id">
+                            (S/N: <span t-out="doc.x_serial_lot_id.name"/>)
+                        </t>
+                    </div>
+                </div>
+
+                <h4 class="mt32">Опис проблеми</h4>
+                <div t-field="doc.x_problem_description"/>
+
+                <h4 class="mt16">Діагностика та висновки</h4>
+                <div t-field="doc.x_findings"/>
+
+                <h4 class="mt16">Виконані роботи</h4>
+                <div t-field="doc.x_resolution"/>
+
+                <div class="row mt64">
+                    <div class="col-6 text-center">
+                        <strong>Інженер</strong><br/>
+                        <img t-if="doc.x_engineer_signature"
+                             t-att-src="image_data_uri(doc.x_engineer_signature)"
+                             style="max-height: 80px; max-width: 220px;"/>
+                        <hr/>
+                        <span t-out="doc.user_ids[:1].name or ''"/>
+                    </div>
+                    <div class="col-6 text-center">
+                        <strong>Замовник</strong><br/>
+                        <img t-if="doc.x_customer_signature"
+                             t-att-src="image_data_uri(doc.x_customer_signature)"
+                             style="max-height: 80px; max-width: 220px;"/>
+                        <hr/>
+                        <span t-out="doc.x_signed_by or doc.partner_id.name or ''"/>
+                    </div>
+                </div>
+            </div>
+        </t>
+    </template>
+
+    <template id="report_repair_protocol">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="doc">
+                <t t-call="rteam_fsm_repair.report_repair_protocol_document"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>
