@@ -1,6 +1,6 @@
 {
     "name": "Rteam FSM Repair Workflow",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "category": "Services/Field Service",
     "summary": (
         "Repair flow on top of Field Service: request types, equipment, "
@@ -45,8 +45,8 @@ License: LGPL-3, free.
         "mail",
     ],
     "data": [
-        "data/mail_template_data.xml",
         "reports/report_protocol_template.xml",
+        "data/mail_template_data.xml",
         "views/project_task_views.xml",
     ],
     "demo": [],
