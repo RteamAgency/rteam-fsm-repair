@@ -3,6 +3,28 @@
 All notable changes to this module are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 1.1.0 - 2026-05-08 - Multi-language localization + Technical Reference
+
+### Added
+
+- **Localization in 8 languages**: English, Russian, Ukrainian, German,
+  Spanish, Romanian, Polish, Arabic. Every field, button, page label,
+  selection value, and error message translated. Drop-in for international
+  rollouts.
+- **Technical Reference section** in module description and listing page:
+  explicit list of every new field, page, button, smart-button, report,
+  template, and hook the module adds, with technical names and the views
+  they appear in.
+
+### Changed
+
+- Banner localization tile: replaced "Ukrainian localization" with
+  "Localized in 8 languages" + visible language list (EN / RU / UK / DE /
+  ES / RO / PL / AR).
+- About-Rteam attribution rewritten to reflect global Odoo partner
+  positioning (manufacturers, equipment dealers, distribution companies
+  across the EU, UK, UAE, Ukraine) instead of "consultancy in Ukraine".
+
 ## 1.0.1 - 2026-05-08 - Store assets aligned with Rteam family design
 
 ### Changed

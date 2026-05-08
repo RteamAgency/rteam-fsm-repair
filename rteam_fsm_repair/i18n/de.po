@@ -1,0 +1,188 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#  * rteam_fsm_repair
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: 2026-05-08 21:30+0000\n"
+"Last-Translator: Rteam <hello@rteam.agency>\n"
+"Language-Team: German <de_DE>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. module: rteam_fsm_repair
+#: model:ir.model,name:rteam_fsm_repair.model_project_task
+msgid "Task"
+msgstr "Aufgabe"
+
+#. module: rteam_fsm_repair
+#: model:ir.model,name:rteam_fsm_repair.model_repair_order
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_repair_order_id
+#: code:addons/rteam_fsm_repair/models/project_task.py:0
+msgid "Repair Order"
+msgstr "Reparaturauftrag"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_request_type
+msgid "Request Type"
+msgstr "Anfragetyp"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__installation
+msgid "Installation"
+msgstr "Installation"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+msgid "Repair"
+msgstr "Reparatur"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__diagnostic
+msgid "Diagnostic"
+msgstr "Diagnose"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__maintenance
+msgid "Preventive Maintenance"
+msgstr "Vorbeugende Wartung"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__rma
+msgid "RMA"
+msgstr "Rücksendung (RMA)"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_equipment_id
+msgid "Equipment"
+msgstr "Ausrüstung"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_equipment_serial_no
+msgid "Equipment S/N"
+msgstr "Geräte-Seriennummer"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_serial_lot_id
+msgid "Serial / Lot"
+msgstr "Seriennummer / Los"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_problem_description
+msgid "Problem Description"
+msgstr "Problembeschreibung"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_findings
+msgid "Engineer Findings"
+msgstr "Befunde des Technikers"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_resolution
+msgid "Resolution / Work Done"
+msgstr "Lösung / Durchgeführte Arbeit"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_engineer_signature
+msgid "Engineer Signature"
+msgstr "Unterschrift des Technikers"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_customer_signature
+msgid "Customer Signature"
+msgstr "Unterschrift des Kunden"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_signed_by
+msgid "Signed By (Customer Name)"
+msgstr "Unterzeichnet von (Kundenname)"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_signed_at
+msgid "Signed At"
+msgstr "Unterzeichnet am"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_repair_order__fsm_task_ids
+msgid "Field Service Visits"
+msgstr "Außendienst-Einsätze"
+
+#. module: rteam_fsm_repair
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_repair_order__fsm_task_count
+msgid "Visits Count"
+msgstr "Anzahl der Besuche"
+
+#. module: rteam_fsm_repair
+#. odoo-python
+#: code:addons/rteam_fsm_repair/models/project_task.py:0
+msgid "Customer signature is required before sending the protocol."
+msgstr "Vor dem Senden des Protokolls ist die Unterschrift des Kunden erforderlich."
+
+#. module: rteam_fsm_repair
+#. odoo-python
+#: code:addons/rteam_fsm_repair/models/project_task.py:0
+msgid "Protocol email template is missing."
+msgstr "Die E-Mail-Vorlage für das Protokoll fehlt."
+
+#. module: rteam_fsm_repair
+#. odoo-python
+#: code:addons/rteam_fsm_repair/models/project_task.py:0
+msgid "This task is not linked to any Repair Order."
+msgstr "Diese Aufgabe ist mit keinem Reparaturauftrag verknüpft."
+
+#. module: rteam_fsm_repair
+#. odoo-python
+#: code:addons/rteam_fsm_repair/models/repair_order.py:0
+msgid "Field Visits - %s"
+msgstr "Außendienst-Einsätze - %s"
+
+#. module: rteam_fsm_repair
+#: model:ir.actions.report,name:rteam_fsm_repair.action_report_repair_protocol
+msgid "Repair Protocol"
+msgstr "Reparaturprotokoll"
+
+#. module: rteam_fsm_repair
+#: model:mail.template,name:rteam_fsm_repair.mail_template_repair_protocol
+msgid "FSM: Repair Protocol"
+msgstr "FSM: Reparaturprotokoll"
+
+#. module: rteam_fsm_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+msgid "Engineer"
+msgstr "Techniker"
+
+#. module: rteam_fsm_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+msgid "Customer"
+msgstr "Kunde"
+
+#. module: rteam_fsm_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+msgid "Signatures (Tablet)"
+msgstr "Unterschriften (Tablet)"
+
+#. module: rteam_fsm_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+msgid "Send Repair Protocol"
+msgstr "Reparaturprotokoll senden"
+
+#. module: rteam_fsm_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+msgid "Create Repair Order"
+msgstr "Reparaturauftrag erstellen"
+
+#. module: rteam_fsm_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+msgid "Repair Case"
+msgstr "Reparaturfall"
+
+#. module: rteam_fsm_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_repair_order_form_fsm_visits
+msgid "Field Visits"
+msgstr "Außendienst-Einsätze"

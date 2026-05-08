@@ -4,7 +4,7 @@ FSM + Repair: Field Service Repair Workflow
 
 Bridge Odoo Field Service and Repair into one continuous service case:
 tablet signatures, instant protocol email, multi-visit history per asset,
-full Ukrainian localization.
+**localized in 8 languages**.
 
 - **Target**: Odoo 19 Enterprise
 - **License**: LGPL-3 (free)
@@ -25,10 +25,10 @@ ordered, a second engineer re-installs after the in-shop work.
 Today this means two disconnected records and a manager piecing the
 timeline together by chatter. **FSM + Repair adds the missing bridge.**
 
-Built initially for a Ukrainian manufacturer of laser-cutting equipment
-with eight field engineers, RMA loops to OEMs in the US and Germany,
-and a nine-tier service program. Generalized as a free LGPL-3 module
-for any service operation that needs the same shape.
+Built initially for a manufacturer of laser-cutting equipment with eight
+field engineers, RMA loops to OEMs in the US and Germany, and a nine-tier
+service program. Generalized as a free LGPL-3 module for any service
+operation that needs the same shape.
 
 
 Features
@@ -49,10 +49,82 @@ Features
    count on the repair order, both directions navigable.
 8. **One-click "Create Repair Order"** from FSM task: pre-fills customer,
    lot/serial, problem description, links them, opens the new case form.
-9. **Full Ukrainian localization** (uk_UA): every field, button, page,
-   label, and selection value translated.
+9. **Localized in 8 languages**: English, Русский, Українська, Deutsch,
+   Español, Română, Polski, العربية.
 10. **Mail template** with severity badge, "View in Odoo" deep-link button,
     and PDF auto-attached.
+
+
+Technical reference (what gets added, where)
+============================================
+
+Inherited model ``project.task`` (Field Service tasks)
+------------------------------------------------------
+
+================================  ===================================================  ================================
+Technical name                    Type                                                 Visible in
+================================  ===================================================  ================================
+``x_request_type``                Selection (5 values)                                 Repair tab + kanban
+``x_equipment_id``                Many2one -> ``maintenance.equipment``                Repair tab
+``x_equipment_serial_no``         Char (related, read-only)                            Repair tab
+``x_serial_lot_id``               Many2one -> ``stock.lot``                            Repair tab
+``x_problem_description``         Html                                                 Repair tab
+``x_findings``                    Html                                                 Repair tab
+``x_resolution``                  Html                                                 Repair tab
+``x_engineer_signature``          Binary, ``widget="signature"``                       Repair tab
+``x_customer_signature``          Binary, ``widget="signature"``                       Repair tab
+``x_signed_by``                   Char                                                 Repair tab
+``x_signed_at``                   Datetime (auto-stamp via onchange)                   Repair tab
+``x_repair_order_id``             Many2one -> ``repair.order``                         Repair tab + smart-button
+================================  ===================================================  ================================
+
+New methods on ``project.task``: ``_action_url()``,
+``action_send_repair_protocol()``, ``action_create_repair_order()``,
+``action_open_repair_order()``.
+
+
+Inherited model ``repair.order`` (Repair Orders)
+------------------------------------------------
+
+================================  =====================================================================  ============================
+Technical name                    Type                                                                   Visible in
+================================  =====================================================================  ============================
+``fsm_task_ids``                  One2many -> ``project.task`` (inverse ``x_repair_order_id``)           smart-button
+``fsm_task_count``                Integer (computed)                                                     smart-button counter
+================================  =====================================================================  ============================
+
+New method on ``repair.order``: ``action_view_fsm_tasks()``.
+
+
+New page, buttons, smart-buttons
+--------------------------------
+
+- New **"Repair" tab** in ``project.view_task_form2`` notebook (visible only
+  when ``is_fsm == True``).
+- Button **"Create Repair Order"** in Repair tab (visible if no repair
+  order linked).
+- Button **"Send Repair Protocol"** in Repair tab (visible if customer
+  signature captured).
+- Smart-button **"Repair Case"** in ``project.task`` button_box (visible
+  if linked).
+- Smart-button **"Field Visits"** with count in ``repair.order``
+  button_box (visible if count > 0).
+- Kanban inherit on ``project.view_task_kanban`` to surface
+  ``x_request_type``.
+
+
+New records
+-----------
+
+- ``ir.actions.report`` ``rteam_fsm_repair.action_report_repair_protocol``:
+  QWeb PDF protocol bound to ``project.task`` via Print menu.
+- ``mail.template`` ``rteam_fsm_repair.mail_template_repair_protocol``:
+  branded HTML body with "View in Odoo" CTA, PDF auto-attached.
+- ``post_init_hook`` ``_post_init_hook``: links the report to the mail
+  template's ``report_template_ids``.
+
+No new menus, no new top-level views, no global ACL changes. Existing FSM
+and Repair access groups govern visibility.
 
 
 Who is this for
@@ -109,11 +181,14 @@ Out of scope for this module:
   companion module.
 
 
-Support
-=======
+About Rteam
+===========
 
-Built and maintained by `Rteam <https://rteam.agency>`_, an Odoo
-consultancy based in Ukraine.
+Rteam is a global Odoo partner specializing in Odoo Enterprise
+implementations and custom development for manufacturers, equipment
+dealers, and distribution companies. We design and ship
+production-grade Odoo Apps for the public catalogue and tailor enterprise
+deployments end-to-end across the EU, the UK, the UAE, and Ukraine.
 
 - Email: alex@rteam.top
 - Source code: https://github.com/RteamAgency/rteam-fsm-repair
