@@ -1,20 +1,34 @@
 # Changelog
 
-All notable changes to this module will be documented in this file.
+All notable changes to this module are documented here.
+Format follows [Keep a Changelog](https://keepachangelog.com/).
 
-## 19.0.1.0.0 - 2026-05-08 - Initial release
+## 1.0.0 - 2026-05-08 - Initial public release
 
-- Request Type selector on FSM tasks: Installation / Repair / Diagnostic /
+First release on apps.odoo.com.
+
+### Added
+
+- **Request Type** selector on FSM tasks: Installation / Repair / Diagnostic /
   Preventive Maintenance / RMA.
-- Equipment link to `maintenance.equipment` and Serial / Lot via `stock.lot`
-  with domain filtered to the equipment's product.
-- Rich-text Problem Description, Engineer Findings, Resolution / Work Done
-  fields organised in a dedicated Repair tab on the FSM task form.
-- Tablet Engineer Signature and Customer Signature widgets, with auto-stamp
-  of `Signed At` when the customer signature is captured.
-- Send Repair Protocol button: renders a QWeb PDF protocol with both
-  signatures and emails it to the customer via `mail.template`.
-- "View in Odoo" CTA in the protocol email body, deep-linking to the FSM
-  task form.
-
-Built initially for the ARAMIS Laser Systems demo on Odoo 19.
+- **Equipment + Serial / Lot** link from `project.task` to
+  `maintenance.equipment` and `stock.lot`. Equipment S/N surfaced as a
+  related read-only field.
+- **Repair tab** on the FSM task form with rich-text Problem Description,
+  Engineer Findings, and Resolution / Work Done.
+- **Tablet Signature widgets** for Engineer + Customer, auto-stamping a
+  "Signed At" timestamp when the customer signs.
+- **Send Repair Protocol** button: renders a QWeb PDF with both signatures
+  embedded and opens the standard mail composer pre-filled with the
+  recipient, branded HTML body, and PDF attached.
+- **Bridge to Odoo Repair**: `x_repair_order_id` Many2one on
+  `project.task`; `fsm_task_ids` One2many inverse on `repair.order`.
+- **Smart-buttons** in both directions: "Repair Case" on FSM task,
+  "Field Visits" with count on repair.order.
+- **One-click "Create Repair Order"** from an FSM task with auto-fill of
+  customer, lot/serial, and problem description.
+- **Full Ukrainian localization** (`i18n/uk.po`): every field, button,
+  page label, and selection value translated.
+- **Mail template** with severity badge and "View in Odoo" deep-link button.
+- Linkage between report and template handled in `_post_init_hook` (avoids
+  ref/eval cross-file resolution issues at install time).

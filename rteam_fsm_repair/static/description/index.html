@@ -1,0 +1,117 @@
+<section style="background:#0A1628;color:#fff;padding:48px 32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;text-align:center;">
+  <div style="max-width:960px;margin:0 auto;">
+    <h1 style="font-size:42px;margin:0 0 12px;color:#fff;letter-spacing:-0.5px;">FSM + Repair</h1>
+    <p style="font-size:20px;color:#00D4AA;margin:0 0 24px;font-weight:600;">Field Service Repair Workflow for Odoo 19</p>
+    <p style="font-size:17px;color:#dde6ef;line-height:1.6;max-width:720px;margin:0 auto;">Bridge Odoo Field Service and Repair into one continuous service case. Tablet signatures, instant protocol email, multi-visit history per asset, full Ukrainian localization.</p>
+    <div style="margin-top:28px;">
+      <span style="display:inline-block;background:#00D4AA;color:#0A1628;padding:6px 14px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:0.5px;margin:4px;">FREE - LGPL-3</span>
+      <span style="display:inline-block;background:#7C5CFC;color:#fff;padding:6px 14px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:0.5px;margin:4px;">Odoo 19 Enterprise</span>
+      <span style="display:inline-block;background:#1f4356;color:#fff;padding:6px 14px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:0.5px;margin:4px;">v1.0.0</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding:48px 32px;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <div style="max-width:960px;margin:0 auto;">
+    <h2 style="font-size:28px;color:#0A1628;margin:0 0 8px;">Why this module exists</h2>
+    <p style="font-size:16px;color:#1a1a1a;line-height:1.65;margin:0 0 16px;">Native Odoo treats Field Service tasks and Repair Orders as two unrelated workflows. In real service operations they're the same case: an engineer visits, can't fix it on-site, the unit goes to a workshop, parts are ordered, a second engineer re-installs after the in-shop work.</p>
+    <p style="font-size:16px;color:#1a1a1a;line-height:1.65;margin:0 0 16px;">Today this means two disconnected records and a manager piecing the timeline together by chatter. <strong>FSM + Repair adds the missing bridge.</strong></p>
+    <div style="background:#f4f5f7;border-left:4px solid #00D4AA;padding:18px 22px;margin:24px 0;font-size:15px;color:#0A1628;line-height:1.65;">
+      <strong>Built initially for a Ukrainian manufacturer of laser-cutting equipment</strong> with eight field engineers, RMA loops to OEMs in the US and Germany, and a nine-tier service program. Generalized as a free LGPL-3 module for any service operation that needs the same shape.
+    </div>
+  </div>
+</section>
+
+<section style="padding:48px 32px;background:#f4f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <div style="max-width:960px;margin:0 auto;">
+    <h2 style="font-size:28px;color:#0A1628;margin:0 0 24px;">Features</h2>
+
+    <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
+      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">1.</span> Request Type per visit</h3>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">Every Field Service task is classified as Installation, Repair, Diagnostic, Preventive Maintenance, or RMA. Drives reporting, SLA filtering, and the engineer's mental model of what they're going to do on-site.</p>
+    </div>
+
+    <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
+      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">2.</span> Equipment + serial lifecycle</h3>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">Link each visit to a <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:13px;">maintenance.equipment</code> record + an optional <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:13px;">stock.lot</code> serial. Equipment Serial Number surfaces as a related field. The unit being serviced is now first-class data, not a free-text note.</p>
+    </div>
+
+    <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
+      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">3.</span> Repair tab on the FSM task form</h3>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">A dedicated tab with rich-text Problem Description, Engineer Findings, and Resolution / Work Done. The engineer sees the same form on tablet and desktop, types their notes once, signs, and the protocol is ready.</p>
+    </div>
+
+    <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
+      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">4.</span> Tablet signatures (engineer + customer)</h3>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">Both signatures captured live on the tablet. The customer signature auto-stamps a "Signed At" timestamp. The Send Repair Protocol button only appears after the customer signature exists.</p>
+    </div>
+
+    <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
+      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">5.</span> Send Repair Protocol email</h3>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">One click renders the QWeb PDF protocol with both signatures embedded, opens the standard mail composer pre-filled with the customer recipient + branded HTML body + the PDF attached. Engineer leaves the site with the customer's protocol already in their inbox.</p>
+    </div>
+
+    <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
+      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">6.</span> Bridge to Odoo Repair</h3>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">Every FSM task can link to a <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:13px;">repair.order</code>. The repair order is the persistent case-file, the FSM tasks are the visits. One Create Repair Order button on the task spawns a fresh case pre-filled with customer + lot + problem description.</p>
+    </div>
+
+    <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
+      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">7.</span> Multi-visit cases</h3>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">A single repair order can host N field visits. Smart-button Field Visits on the repair order shows the count + a filtered list. Smart-button Repair Case on the FSM task jumps back to the case file. Manager has the whole history of an asset in one click.</p>
+    </div>
+
+    <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
+      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">8.</span> Full Ukrainian localization</h3>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">Every field, button, page, label, and selection value translated. Drop-in for Ukrainian deployments without manual i18n work.</p>
+    </div>
+  </div>
+</section>
+
+<section style="padding:48px 32px;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <div style="max-width:960px;margin:0 auto;">
+    <h2 style="font-size:28px;color:#0A1628;margin:0 0 16px;">Who is this for</h2>
+    <ul style="list-style:none;padding:0;margin:0;color:#1a1a1a;font-size:16px;line-height:1.7;">
+      <li style="padding:10px 0;border-bottom:1px solid #e1e4e8;"><strong style="color:#0A1628;">Manufacturers and OEMs</strong> that build, sell, and service their own equipment (laser cutters, packaging machines, industrial printers, medical devices)</li>
+      <li style="padding:10px 0;border-bottom:1px solid #e1e4e8;"><strong style="color:#0A1628;">Equipment dealers</strong> with after-sale service contracts and a mix of in-field and in-shop repair</li>
+      <li style="padding:10px 0;border-bottom:1px solid #e1e4e8;"><strong style="color:#0A1628;">Field service teams</strong> running tiered service programs (on-site visit -&gt; in-shop repair -&gt; RMA escalation to the OEM)</li>
+      <li style="padding:10px 0;"><strong style="color:#0A1628;">Any Odoo deployment</strong> using <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">industry_fsm</code> AND <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">repair</code> AND <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">helpdesk_fsm</code> together</li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding:48px 32px;background:#f4f5f7;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <div style="max-width:960px;margin:0 auto;">
+    <h2 style="font-size:28px;color:#0A1628;margin:0 0 16px;">Configuration</h2>
+    <ol style="color:#1a1a1a;font-size:16px;line-height:1.7;padding-left:24px;">
+      <li style="margin:10px 0;">Apps -&gt; Update Apps List -&gt; install <strong>FSM + Repair</strong>. Dependencies <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">industry_fsm</code> + <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">helpdesk_fsm</code> + <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">repair</code> + <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">maintenance</code> are pulled automatically.</li>
+      <li style="margin:10px 0;">Project -&gt; Settings -&gt; create a Field Service project, add the recommended kanban stages: <strong>Diagnostic -&gt; Quote -&gt; Awaiting Parts -&gt; In Progress -&gt; Testing -&gt; Closed</strong>.</li>
+      <li style="margin:10px 0;">Equipment -&gt; create the units you service (one record per serial number). Link them in <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">maintenance.equipment</code>.</li>
+      <li style="margin:10px 0;">Open any FSM task: the <strong>Repair</strong> tab is right there with all the new fields.</li>
+    </ol>
+  </div>
+</section>
+
+<section style="padding:48px 32px;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
+  <div style="max-width:960px;margin:0 auto;">
+    <h2 style="font-size:28px;color:#0A1628;margin:0 0 16px;">What it does NOT do</h2>
+    <p style="color:#1a1a1a;font-size:15px;line-height:1.65;">Out of scope for this module (consider as separate / native Odoo configuration):</p>
+    <ul style="color:#1a1a1a;font-size:15px;line-height:1.7;padding-left:22px;">
+      <li>Role-based access groups (configure standard FSM/Repair groups via Settings -&gt; Users)</li>
+      <li>Multi-currency parts costing per repair (handled natively by <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:13px;">industry_fsm_sale</code> + Odoo Accounting)</li>
+      <li>Sign module integration with certified-PDF audit trail (planned for a separate companion module)</li>
+      <li>RMA shipping tracking to external OEMs (planned for a separate companion module)</li>
+    </ul>
+  </div>
+</section>
+
+<section style="padding:48px 32px;background:#0A1628;color:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;text-align:center;">
+  <div style="max-width:720px;margin:0 auto;">
+    <h2 style="font-size:24px;color:#fff;margin:0 0 12px;">Support and customization</h2>
+    <p style="color:#dde6ef;font-size:16px;line-height:1.65;margin:0 0 8px;">Built and maintained by <strong style="color:#00D4AA;">Rteam</strong>, an Odoo consultancy in Ukraine.</p>
+    <p style="color:#dde6ef;font-size:16px;line-height:1.65;margin:0 0 8px;">Feature requests, bug reports, custom adaptation: <a href="mailto:alex@rteam.top" style="color:#00D4AA;text-decoration:none;font-weight:700;">alex@rteam.top</a></p>
+    <p style="color:#dde6ef;font-size:16px;line-height:1.65;margin:0 0 8px;">Source code: <a href="https://github.com/RteamAgency/rteam-fsm-repair" style="color:#00D4AA;text-decoration:none;font-weight:700;">github.com/RteamAgency/rteam-fsm-repair</a></p>
+    <p style="color:#dde6ef;font-size:16px;line-height:1.65;margin:0 0 24px;">Website: <a href="https://rteam.agency" style="color:#00D4AA;text-decoration:none;font-weight:700;">rteam.agency</a></p>
+    <p style="color:#7c8ea3;font-size:13px;margin:24px 0 0;">License: LGPL-3. Free forever.</p>
+  </div>
+</section>
