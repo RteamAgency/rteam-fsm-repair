@@ -12,10 +12,8 @@
                         <group>
                             <field name="x_request_type"/>
                             <field name="x_equipment_id" options="{'no_create': True}"/>
-                            <field name="x_equipment_product_id" invisible="1"/>
-                            <field name="x_serial_lot_id"
-                                   options="{'no_create': True}"
-                                   domain="[('product_id', '=', x_equipment_product_id)]"/>
+                            <field name="x_equipment_serial_no" readonly="1"/>
+                            <field name="x_serial_lot_id" options="{'no_create': True}"/>
                         </group>
                         <group>
                             <field name="x_signed_by"/>

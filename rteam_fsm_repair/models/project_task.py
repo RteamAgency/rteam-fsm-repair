@@ -28,9 +28,9 @@ class ProjectTask(models.Model):
         tracking=True,
         help="Installed unit being serviced. Links to its lifecycle history.",
     )
-    x_equipment_product_id = fields.Many2one(
-        related="x_equipment_id.product_id",
-        string="Equipment Product",
+    x_equipment_serial_no = fields.Char(
+        related="x_equipment_id.serial_no",
+        string="Equipment S/N",
         store=False,
         readonly=True,
     )
@@ -38,7 +38,7 @@ class ProjectTask(models.Model):
         comodel_name="stock.lot",
         string="Serial / Lot",
         tracking=True,
-        help="Serial number of the unit being serviced (matches Equipment product).",
+        help="Optional: stock.lot record for the unit being serviced.",
     )
 
     x_problem_description = fields.Html(string="Problem Description")
