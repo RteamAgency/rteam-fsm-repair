@@ -3,6 +3,12 @@
 All notable changes to this module are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 1.1.2 - 2026-05-09 - Branded banner.png in Light Glass family style
+
+### Changed
+
+- `static/description/banner.png`: replaced the dark thumbnail-collage cover with a Light Glass cover that matches the rest of the Rteam family (Health Check, AI Bot, Prozorro Connector). F+ monogram with signature gradient (violet to teal), "FSM + Repair by Rteam" wordmark, "Field Service tasks meet Repair Orders" tagline, 2x2 light-glass feature tiles (REPAIR / VISITS / SIGN / PROTOCOL). 1120x560 (2:1), generated via nano banana pro from the BrandKit Light Glass spec, cropped from 16:9 source via `sips -c` + `sips -Z`.
+
 ## 1.1.1 - 2026-05-08 - Fix: encode non-ASCII as numeric HTML entities
 
 ### Fixed

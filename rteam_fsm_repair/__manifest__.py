@@ -1,6 +1,6 @@
 {
     "name": "FSM + Repair: Field Service Repair Workflow",
-    "version": "19.0.1.1.1",
+    "version": "19.0.1.1.2",
     "post_init_hook": "_post_init_hook",
     "category": "Services/Field Service",
     "summary": (
