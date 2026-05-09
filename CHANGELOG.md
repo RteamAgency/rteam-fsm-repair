@@ -3,6 +3,12 @@
 All notable changes to this module are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 1.1.3 - 2026-05-09 - Fix invisible hero text on apps.odoo.com listing
+
+### Fixed
+
+- `static/description/index.html`: hero and About sections used `background:#0A1628` (navy) with `color:#dde6ef` (light text). apps.odoo.com listing chrome strips inline `background-color` (documented quirk), so the navy bg disappeared and the light text rendered nearly invisible against the white listing background. Converted both sections to white-bg with navy headings (`#0A1628`), slate body text (`#475569`), and bordered (not filled) badge chips so the visual treatment survives the listing chrome's bg-stripping behaviour.
+
 ## 1.1.2 - 2026-05-09 - Branded banner.png in Light Glass family style
 
 ### Changed
