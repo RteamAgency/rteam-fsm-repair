@@ -16,6 +16,8 @@ class TestRepairWorkflow(TransactionCase):
             {
                 "name": "Test FSM Repair",
                 "is_fsm": True,
+                # industry_fsm requires a company on a field service project.
+                "company_id": cls.env.company.id,
             }
         )
         cls.task = cls.env["project.task"].create(
