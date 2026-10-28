@@ -1,6 +1,6 @@
 {
     "name": "FSM + Repair: Field Service Repair Workflow",
-    "version": "19.0.1.1.3",
+    "version": "20.0.1.1.3",
     "post_init_hook": "_post_init_hook",
     "category": "Services/Field Service",
     "summary": (
@@ -11,7 +11,7 @@
 FSM + Repair: Field Service Repair Workflow
 ===========================================
 
-Native Odoo treats Field Service tasks and Repair Orders as two unrelated
+Native Odoo treats Field Service visits and Repair Orders as two unrelated
 workflows. In real service operations they're the same case: an engineer
 visits, can't fix it on-site, the unit goes to a workshop, parts are
 ordered, a second engineer re-installs after the in-shop work.
@@ -20,24 +20,24 @@ This module adds the missing bridge.
 
 Features
 --------
-* **Request Type** selector on every FSM task: Installation / Repair /
+* **Request Type** selector on every field service visit: Installation / Repair /
   Diagnostic / Preventive Maintenance / RMA
 * **Equipment** link to ``maintenance.equipment`` + Serial/Lot via
   ``stock.lot``, with Equipment Serial No surfaced as a related read-only
   field
-* **Repair tab** on the FSM task form with rich-text Problem Description,
+* **Repair tab** on the field service visit form with rich-text Problem Description,
   Engineer Findings, Resolution / Work Done
 * **Tablet Engineer + Customer signatures** with auto-stamp of Signed At
   the moment the customer captures their signature
 * **Send Repair Protocol** button: renders a QWeb PDF with both signatures
   and emails it to the customer in one click; PDF auto-attached
-* **Bridge to Odoo Repair**: link any FSM task to a ``repair.order`` as
+* **Bridge to Odoo Repair**: link any field service visit to a ``repair.order`` as
   the persistent case file; one repair order can span N field visits plus
   in-shop work plus RMA escalation
-* **Smart-button "Repair Case"** on FSM task -> jumps to linked repair order
+* **Smart-button "Repair Case"** on the visit -> jumps to linked repair order
 * **Smart-button "Field Visits"** with count on repair order -> filtered
   list of all on-site visits for that case
-* **One-click "Create Repair Order"** from FSM task: pre-fills customer,
+* **One-click "Create Repair Order"** from the visit: pre-fills customer,
   lot/serial, problem description, links them, opens the new case form
 * **Localized in 8 languages**: EN, RU, UK, DE, ES, RO, PL, AR
 * **Mail template** with severity badge, "View in Odoo" deep-link button,
@@ -46,7 +46,8 @@ Features
 Technical reference (what gets added, where)
 --------------------------------------------
 
-Inherited model ``project.task`` (Field Service tasks):
+Inherited model ``planning.slot`` (field service visits; Odoo 20 plans
+them in ``planning_field_service``, no longer as ``industry_fsm`` tasks):
 
 * ``x_request_type`` Selection [installation, repair, diagnostic,
   maintenance, rma], tracking
@@ -65,29 +66,30 @@ Inherited model ``project.task`` (Field Service tasks):
 
 Inherited model ``repair.order`` (Repair Orders):
 
-* ``fsm_task_ids`` One2many -> ``project.task`` (inverse
+* ``fsm_slot_ids`` One2many -> ``planning.slot`` (inverse
   ``x_repair_order_id``)
-* ``fsm_task_count`` Integer (computed)
-* Method: ``action_view_fsm_tasks()``
+* ``fsm_slot_count`` Integer (computed)
+* Method: ``action_view_fsm_slots()``
 
 Inherited views:
 
-* ``project.view_task_form2`` (FSM/project task form):
+* ``planning.planning_view_form`` (visit form):
 
-  - New "Repair" tab in notebook (visible if ``is_fsm == True``)
+  - New "Repair" tab in the notebook
   - All x_ fields above grouped into the new tab
   - "Create Repair Order" button (visible if no repair order linked)
   - "Send Repair Protocol" button (visible if customer signature captured)
   - "Repair Case" smart-button in button_box (visible if linked)
 
-* ``project.view_task_kanban``: surfaces ``x_request_type`` for filtering
+* ``planning.planning_view_tree`` and ``planning.planning_view_search_base``:
+  ``x_request_type`` column and group-by, repair order search
 * ``repair.view_repair_order_form``: "Field Visits" smart-button with
   count in button_box (visible if count > 0)
 
 New records:
 
 * ``ir.actions.report`` ``rteam_fsm_repair.action_report_repair_protocol``:
-  QWeb PDF protocol bound to ``project.task`` via Print menu
+  QWeb PDF protocol bound to ``planning.slot`` via Print menu
 * ``mail.template`` ``rteam_fsm_repair.mail_template_repair_protocol``:
   branded HTML body, "View in Odoo" CTA, PDF auto-attached
 
@@ -105,20 +107,15 @@ Who is this for
 - Equipment dealers with after-sale service contracts
 - Field service teams running tiered service programs (on-site visit ->
   in-shop repair -> RMA escalation to OEM)
-- Any Odoo deployment using ``industry_fsm`` AND ``repair`` AND
-  ``helpdesk_fsm`` together
-
-Suggested kanban stages for a Repair project (configure manually under
-Settings -> Project -> Stages)::
-
-    Diagnostic -> Quote -> Awaiting Parts -> In Progress -> Testing -> Closed
+- Any Odoo deployment using Field Service (``planning_field_service``)
+  AND ``repair`` together
 
 Out of scope (configure manually in Odoo)
 -----------------------------------------
 - Role-based access groups: configure standard FSM/Repair groups via
   Settings -> Users
 - Multi-currency parts costing per repair: handled natively by
-  ``industry_fsm_sale`` + Odoo Accounting
+  ``planning_field_service_sale_stock`` + Odoo Accounting
 - Sign module integration with certified-PDF audit trail: planned for
   a separate companion module
 - RMA shipping tracking to external OEMs: planned for a separate
@@ -141,8 +138,7 @@ LGPL-3, free. See LICENSE file.
     "support": "alex@rteam.top",
     "license": "LGPL-3",
     "depends": [
-        "industry_fsm",
-        "helpdesk_fsm",
+        "planning_field_service",
         "maintenance",
         "stock",
         "repair",
@@ -151,7 +147,7 @@ LGPL-3, free. See LICENSE file.
     "data": [
         "reports/report_protocol_template.xml",
         "data/mail_template_data.xml",
-        "views/project_task_views.xml",
+        "views/planning_slot_views.xml",
         "views/repair_order_views.xml",
     ],
     "images": [

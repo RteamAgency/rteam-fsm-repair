@@ -4,14 +4,16 @@ Adds repair-specific fields and a sign-protocol flow on top of Odoo's Field
 Service module. Designed for service teams that handle on-site repair,
 installation, diagnostic, preventive maintenance, and RMA visits.
 
-- **Target**: Odoo 19 Enterprise (Field Service is Enterprise-only)
+- **Target**: Odoo 20 Enterprise (Field Service is Enterprise-only). On 20.0 a
+  field service visit is a `planning.slot` (`planning_field_service`); the
+  `19.0` branch serves Odoo 19, where it was an `industry_fsm` task.
 - **License**: LGPL-3 (free)
 - **Module technical name**: `rteam_fsm_repair`
 - **Author**: [Rteam](https://rteam.agency)
 
 ## Features
 
-1. `Request Type` selector on every FSM task (Installation / Repair /
+1. `Request Type` selector on every field service visit (Installation / Repair /
    Diagnostic / Preventive Maintenance / RMA)
 2. `Equipment` link to `maintenance.equipment` + `Serial / Lot` via
    `stock.lot` (domain-filtered to the equipment's product)
@@ -22,18 +24,8 @@ installation, diagnostic, preventive maintenance, and RMA visits.
 5. **Send Repair Protocol** button: renders a PDF protocol with both
    signatures and emails it to the customer in one click
 
-The Helpdesk &harr; FSM linkage (ticket spawning a field intervention with a
-back-reference) is provided natively by `helpdesk_fsm`, declared as a
-dependency. This module focuses on the FSM-side data layer.
-
-## Suggested kanban stages
-
-Configure these manually on your FSM Repair project (Settings &rarr;
-Project &rarr; Stages):
-
-```
-Diagnostic -> Quote -> Awaiting Parts -> In Progress -> Testing -> Closed
-```
+Helpdesk is not required: on 20.0 the module depends on Field Service
+(`planning_field_service`) and Repair only.
 
 ## Install
 
@@ -46,15 +38,15 @@ git clone git@github.com:RteamAgency/rteam-fsm-repair.git
 Then in Odoo: Apps &rarr; Update Apps List &rarr; install
 **"Rteam FSM Repair Workflow"**.
 
-Module dependencies are pulled automatically: `industry_fsm`,
-`helpdesk_fsm`, `maintenance`, `stock`, `mail`.
+Module dependencies are pulled automatically: `planning_field_service`,
+`repair`, `maintenance`, `stock`, `mail`.
 
 ## Roadmap (not in MVP)
 
 - Role-based access groups (Engineer profile with start/finish-only rights)
 - Multi-currency parts costing per repair
 - RMA loop module (parent OEM &harr; in-house lab &harr; field tech)
-- Spare-parts requisition wizard from FSM task to internal transfer
+- Spare-parts requisition wizard from a field service visit to internal transfer
 
 ## Author
 

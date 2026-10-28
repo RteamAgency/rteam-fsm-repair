@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
 
-    <record id="view_task_form_repair" model="ir.ui.view">
-        <field name="name">project.task.form.fsm.repair</field>
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_form2"/>
+    <record id="view_planning_slot_form_repair" model="ir.ui.view">
+        <field name="name">planning.slot.form.fsm.repair</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//div[hasclass('oe_button_box')]" position="inside">
+            <xpath expr="//div[@name='button_box']" position="inside">
                 <button name="action_open_repair_order"
                         type="object"
                         class="oe_stat_button"
-                        icon="fa-wrench"
+                        icon="build"
                         invisible="not x_repair_order_id">
                     <div class="o_stat_info">
                         <field name="x_repair_order_id" class="o_stat_text"/>
@@ -19,7 +19,7 @@
                 </button>
             </xpath>
             <xpath expr="//notebook" position="inside">
-                <page string="Repair" name="repair_page" invisible="not is_fsm">
+                <page string="Repair" name="repair_page">
                     <group>
                         <group>
                             <field name="x_request_type"/>
@@ -73,13 +73,26 @@
         </field>
     </record>
 
-    <record id="view_task_kanban_request_type" model="ir.ui.view">
-        <field name="name">project.task.kanban.request.type</field>
-        <field name="model">project.task</field>
-        <field name="inherit_id" ref="project.view_task_kanban"/>
+    <record id="view_planning_slot_list_request_type" model="ir.ui.view">
+        <field name="name">planning.slot.list.request.type</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_tree"/>
         <field name="arch" type="xml">
-            <xpath expr="//templates" position="before">
-                <field name="x_request_type"/>
+            <field name="allocated_hours" position="before">
+                <field name="x_request_type" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_planning_slot_search_request_type" model="ir.ui.view">
+        <field name="name">planning.slot.search.request.type</field>
+        <field name="model">planning.slot</field>
+        <field name="inherit_id" ref="planning.planning_view_search_base"/>
+        <field name="arch" type="xml">
+            <xpath expr="//search" position="inside">
+                <field name="x_repair_order_id"/>
+                <filter name="group_by_request_type" string="Request Type"
+                        context="{'group_by': 'x_request_type'}"/>
             </xpath>
         </field>
     </record>

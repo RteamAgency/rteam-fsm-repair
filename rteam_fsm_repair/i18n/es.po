@@ -16,125 +16,125 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. module: rteam_fsm_repair
-#: model:ir.model,name:rteam_fsm_repair.model_project_task
+#: model:ir.model,name:rteam_fsm_repair.model_planning_slot
 msgid "Task"
 msgstr "Tarea"
 
 #. module: rteam_fsm_repair
 #: model:ir.model,name:rteam_fsm_repair.model_repair_order
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_repair_order_id
-#: code:addons/rteam_fsm_repair/models/project_task.py:0
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_repair_order_id
+#: code:addons/rteam_fsm_repair/models/planning_slot.py:0
 msgid "Repair Order"
 msgstr "Orden de Reparación"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_request_type
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_request_type
 msgid "Request Type"
 msgstr "Tipo de Solicitud"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__installation
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__planning_slot__x_request_type__installation
 msgid "Installation"
 msgstr "Instalación"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__repair
-#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__planning_slot__x_request_type__repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_planning_slot_form_repair
 msgid "Repair"
 msgstr "Reparación"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__diagnostic
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__planning_slot__x_request_type__diagnostic
 msgid "Diagnostic"
 msgstr "Diagnóstico"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__maintenance
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__planning_slot__x_request_type__maintenance
 msgid "Preventive Maintenance"
 msgstr "Mantenimiento Preventivo"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__project_task__x_request_type__rma
+#: model:ir.model.fields.selection,name:rteam_fsm_repair.selection__planning_slot__x_request_type__rma
 msgid "RMA"
 msgstr "Devolución (RMA)"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_equipment_id
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_equipment_id
 msgid "Equipment"
 msgstr "Equipo"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_equipment_serial_no
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_equipment_serial_no
 msgid "Equipment S/N"
 msgstr "N/S del Equipo"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_serial_lot_id
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_serial_lot_id
 msgid "Serial / Lot"
 msgstr "Número de Serie / Lote"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_problem_description
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_problem_description
 msgid "Problem Description"
 msgstr "Descripción del Problema"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_findings
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_findings
 msgid "Engineer Findings"
 msgstr "Hallazgos del Técnico"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_resolution
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_resolution
 msgid "Resolution / Work Done"
 msgstr "Resolución / Trabajo Realizado"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_engineer_signature
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_engineer_signature
 msgid "Engineer Signature"
 msgstr "Firma del Técnico"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_customer_signature
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_customer_signature
 msgid "Customer Signature"
 msgstr "Firma del Cliente"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_signed_by
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_signed_by
 msgid "Signed By (Customer Name)"
 msgstr "Firmado Por (Nombre del Cliente)"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_project_task__x_signed_at
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_planning_slot__x_signed_at
 msgid "Signed At"
 msgstr "Firmado el"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_repair_order__fsm_task_ids
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_repair_order__fsm_slot_ids
 msgid "Field Service Visits"
 msgstr "Visitas de Servicio Técnico"
 
 #. module: rteam_fsm_repair
-#: model:ir.model.fields,field_description:rteam_fsm_repair.field_repair_order__fsm_task_count
+#: model:ir.model.fields,field_description:rteam_fsm_repair.field_repair_order__fsm_slot_count
 msgid "Visits Count"
 msgstr "Número de Visitas"
 
 #. module: rteam_fsm_repair
 #. odoo-python
-#: code:addons/rteam_fsm_repair/models/project_task.py:0
+#: code:addons/rteam_fsm_repair/models/planning_slot.py:0
 msgid "Customer signature is required before sending the protocol."
 msgstr "Se requiere la firma del cliente antes de enviar el protocolo."
 
 #. module: rteam_fsm_repair
 #. odoo-python
-#: code:addons/rteam_fsm_repair/models/project_task.py:0
+#: code:addons/rteam_fsm_repair/models/planning_slot.py:0
 msgid "Protocol email template is missing."
 msgstr "Falta la plantilla de correo del protocolo."
 
 #. module: rteam_fsm_repair
 #. odoo-python
-#: code:addons/rteam_fsm_repair/models/project_task.py:0
-msgid "This task is not linked to any Repair Order."
-msgstr "Esta tarea no está vinculada a ninguna Orden de Reparación."
+#: code:addons/rteam_fsm_repair/models/planning_slot.py:0
+msgid "This visit is not linked to any Repair Order."
+msgstr "Esta visita no está vinculada a ninguna Orden de Reparación."
 
 #. module: rteam_fsm_repair
 #. odoo-python
@@ -153,32 +153,32 @@ msgid "FSM: Repair Protocol"
 msgstr "FSM: Protocolo de Reparación"
 
 #. module: rteam_fsm_repair
-#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_planning_slot_form_repair
 msgid "Engineer"
 msgstr "Técnico"
 
 #. module: rteam_fsm_repair
-#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_planning_slot_form_repair
 msgid "Customer"
 msgstr "Cliente"
 
 #. module: rteam_fsm_repair
-#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_planning_slot_form_repair
 msgid "Signatures (Tablet)"
 msgstr "Firmas (Tablet)"
 
 #. module: rteam_fsm_repair
-#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_planning_slot_form_repair
 msgid "Send Repair Protocol"
 msgstr "Enviar Protocolo"
 
 #. module: rteam_fsm_repair
-#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_planning_slot_form_repair
 msgid "Create Repair Order"
 msgstr "Crear Orden de Reparación"
 
 #. module: rteam_fsm_repair
-#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_task_form_repair
+#: model_terms:ir.ui.view,arch_db:rteam_fsm_repair.view_planning_slot_form_repair
 msgid "Repair Case"
 msgstr "Caso de Reparación"
 

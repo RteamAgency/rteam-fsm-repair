@@ -6,7 +6,8 @@ Bridge Odoo Field Service and Repair into one continuous service case:
 tablet signatures, instant protocol email, multi-visit history per asset,
 **localized in 8 languages**.
 
-- **Target**: Odoo 19 Enterprise
+- **Target**: Odoo 20 Enterprise (``planning_field_service``; the ``19.0``
+  branch serves Odoo 19 with ``industry_fsm``)
 - **License**: LGPL-3 (free)
 - **Module technical name**: ``rteam_fsm_repair``
 - **Author**: `Rteam <https://rteam.agency>`_
@@ -38,16 +39,16 @@ Features
    Preventive Maintenance / RMA.
 2. **Equipment + serial lifecycle**: link visits to ``maintenance.equipment``
    and ``stock.lot``, with Equipment S/N as a related read-only field.
-3. **Repair tab on the FSM task form** with rich-text Problem Description,
+3. **Repair tab on the field service visit form** with rich-text Problem Description,
    Engineer Findings, Resolution / Work Done.
 4. **Tablet signatures** for Engineer + Customer with auto-stamp Signed At.
 5. **Send Repair Protocol** button: renders QWeb PDF with both signatures
    and emails it to the customer in one click.
-6. **Bridge to Odoo Repair**: link any FSM task to a ``repair.order`` as
+6. **Bridge to Odoo Repair**: link any field service visit to a ``repair.order`` as
    the persistent case file.
-7. **Smart-button "Repair Case"** on FSM task and **"Field Visits"** with
+7. **Smart-button "Repair Case"** on the visit and **"Field Visits"** with
    count on the repair order, both directions navigable.
-8. **One-click "Create Repair Order"** from FSM task: pre-fills customer,
+8. **One-click "Create Repair Order"** from the visit: pre-fills customer,
    lot/serial, problem description, links them, opens the new case form.
 9. **Localized in 8 languages**: English, Русский, Українська, Deutsch,
    Español, Română, Polski, العربية.
@@ -58,13 +59,13 @@ Features
 Technical reference (what gets added, where)
 ============================================
 
-Inherited model ``project.task`` (Field Service tasks)
+Inherited model ``planning.slot`` (field service visits)
 ------------------------------------------------------
 
 ================================  ===================================================  ================================
 Technical name                    Type                                                 Visible in
 ================================  ===================================================  ================================
-``x_request_type``                Selection (5 values)                                 Repair tab + kanban
+``x_request_type``                Selection (5 values)                                 Repair tab + list
 ``x_equipment_id``                Many2one -> ``maintenance.equipment``                Repair tab
 ``x_equipment_serial_no``         Char (related, read-only)                            Repair tab
 ``x_serial_lot_id``               Many2one -> ``stock.lot``                            Repair tab
@@ -78,7 +79,7 @@ Technical name                    Type                                          
 ``x_repair_order_id``             Many2one -> ``repair.order``                         Repair tab + smart-button
 ================================  ===================================================  ================================
 
-New methods on ``project.task``: ``_action_url()``,
+New methods on ``planning.slot``: ``_action_url()``,
 ``action_send_repair_protocol()``, ``action_create_repair_order()``,
 ``action_open_repair_order()``.
 
@@ -89,7 +90,7 @@ Inherited model ``repair.order`` (Repair Orders)
 ================================  =====================================================================  ============================
 Technical name                    Type                                                                   Visible in
 ================================  =====================================================================  ============================
-``fsm_task_ids``                  One2many -> ``project.task`` (inverse ``x_repair_order_id``)           smart-button
+``fsm_slot_ids``                  One2many -> ``planning.slot`` (inverse ``x_repair_order_id``)          smart-button
 ``fsm_task_count``                Integer (computed)                                                     smart-button counter
 ================================  =====================================================================  ============================
 
@@ -99,25 +100,23 @@ New method on ``repair.order``: ``action_view_fsm_tasks()``.
 New page, buttons, smart-buttons
 --------------------------------
 
-- New **"Repair" tab** in ``project.view_task_form2`` notebook (visible only
-  when ``is_fsm == True``).
+- New **"Repair" tab** in the ``planning.planning_view_form`` notebook.
 - Button **"Create Repair Order"** in Repair tab (visible if no repair
   order linked).
 - Button **"Send Repair Protocol"** in Repair tab (visible if customer
   signature captured).
-- Smart-button **"Repair Case"** in ``project.task`` button_box (visible
+- Smart-button **"Repair Case"** in the visit's button_box (visible
   if linked).
 - Smart-button **"Field Visits"** with count in ``repair.order``
   button_box (visible if count > 0).
-- Kanban inherit on ``project.view_task_kanban`` to surface
-  ``x_request_type``.
+- ``x_request_type`` column in the shift list and a group-by in its search.
 
 
 New records
 -----------
 
 - ``ir.actions.report`` ``rteam_fsm_repair.action_report_repair_protocol``:
-  QWeb PDF protocol bound to ``project.task`` via Print menu.
+  QWeb PDF protocol bound to ``planning.slot`` via Print menu.
 - ``mail.template`` ``rteam_fsm_repair.mail_template_repair_protocol``:
   branded HTML body with "View in Odoo" CTA, PDF auto-attached.
 - ``post_init_hook`` ``_post_init_hook``: links the report to the mail
@@ -137,8 +136,8 @@ Who is this for
   in-field and in-shop repair
 - **Field service teams** running tiered service programs (on-site visit
   -> in-shop repair -> RMA escalation to OEM)
-- **Any Odoo deployment** using ``industry_fsm`` AND ``repair`` AND
-  ``helpdesk_fsm`` together
+- **Any Odoo deployment** using Field Service (``planning_field_service``)
+  AND ``repair`` together
 
 
 Install
@@ -151,18 +150,15 @@ Install
     # or add this repo as a git submodule on Odoo.sh / on-prem deployments
 
 In Odoo: Apps -> Update Apps List -> install **FSM + Repair**.
-Module dependencies are pulled automatically: ``industry_fsm``,
-``helpdesk_fsm``, ``repair``, ``maintenance``, ``stock``, ``mail``.
+Module dependencies are pulled automatically: ``planning_field_service``,
+``repair``, ``maintenance``, ``stock``, ``mail``.
 
 
 Configuration
 =============
 
-1. Project -> Settings -> create a Field Service project; add the
-   recommended kanban stages:
-   ``Diagnostic -> Quote -> Awaiting Parts -> In Progress -> Testing -> Closed``.
-2. Equipment -> create the units you service (one record per serial number).
-3. Open any FSM task: the **Repair** tab is right there with all the new
+1. Equipment -> create the units you service (one record per serial number).
+2. Open any field service visit: the **Repair** tab is right there with all the new
    fields.
 
 
@@ -174,7 +170,7 @@ Out of scope for this module:
 - **Role-based access groups** (Engineer profile with start/finish-only
   rights) -> configure standard FSM/Repair groups via Settings -> Users.
 - **Multi-currency parts costing per repair** -> handled natively by
-  ``industry_fsm_sale`` + Odoo Accounting.
+  ``planning_field_service_sale_stock`` + Odoo Accounting.
 - **Sign module integration** with certified-PDF audit trail -> planned
   for a separate companion module.
 - **RMA shipping tracking** to external OEMs -> planned for a separate
