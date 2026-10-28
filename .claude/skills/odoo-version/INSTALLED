@@ -1,0 +1,4 @@
+odoo_version=20.0
+upstream=odoo/odoo@64fdfc3a33274f74ae17893de228044fd81222ac
+rteam=https://github.com/RteamAgency/odoo-skills.git@2a40ece
+managed=odoo-guidelines odoo-review odoo-security odoo-web-guidelines odoo-git odoo-version
