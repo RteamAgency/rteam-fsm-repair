@@ -3,6 +3,18 @@
 All notable changes to this module are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/).
 
+## 20.0.1.1.3 - 2026-10-28 - Odoo 20: field service visits are planning shifts
+
+### Changed
+
+- Odoo 20 enterprise dropped `industry_fsm` and `helpdesk_fsm`; a field service visit is a `planning.slot` of `planning_field_service`. The Repair fields, the Repair tab, the buttons, the protocol report and the protocol email move from `project.task` to `planning.slot`; on `repair.order` the visits are `fsm_slot_ids` / `fsm_slot_count` / `action_view_fsm_slots()`. The request type is a list column and a group-by (planning has no task kanban). Helpdesk is no longer a dependency: no code used it.
+- `ir.actions.report.report_file` is gone in Odoo 20; icons are Material Symbols (`upgrade_code`). Visit links are `/odoo/planning.slot/<id>`.
+- Tests: 10 on Odoo 20.0 enterprise, including the protocol report and email rendered for a visit and the repair order created from one.
+
+### Not covered
+
+- Moving a 19.0 database: Odoo's upgrade turns FSM tasks into shifts; the Repair values on `project.task` need a migration to the matching `planning.slot` once that mapping is known.
+
 ## 1.1.3 - 2026-05-09 - Fix invisible hero text on apps.odoo.com listing
 
 ### Fixed

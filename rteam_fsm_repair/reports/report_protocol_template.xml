@@ -3,20 +3,19 @@
 
     <record id="action_report_repair_protocol" model="ir.actions.report">
         <field name="name">Repair Protocol</field>
-        <field name="model">project.task</field>
+        <field name="model">planning.slot</field>
         <field name="report_type">qweb-pdf</field>
         <field name="report_name">rteam_fsm_repair.report_repair_protocol</field>
-        <field name="report_file">rteam_fsm_repair.report_repair_protocol</field>
-        <field name="binding_model_id" ref="project.model_project_task"/>
+        <field name="binding_model_id" ref="planning.model_planning_slot"/>
         <field name="binding_type">report</field>
-        <field name="print_report_name">'Protocol - %s' % (object.name)</field>
+        <field name="print_report_name">'Protocol - %s' % (object.display_name)</field>
     </record>
 
     <template id="report_repair_protocol_document">
         <t t-call="web.external_layout">
             <div class="page">
                 <h2>Протокол виконаних робіт</h2>
-                <h4 t-out="doc.name"/>
+                <h4 t-out="doc.display_name"/>
 
                 <div class="row mt32 mb32">
                     <div class="col-6">
@@ -28,7 +27,7 @@
                         <strong>Виконавець:</strong><br/>
                         <span t-out="doc.user_ids[:1].name or '-'"/><br/>
                         <strong>Дата:</strong>
-                        <span t-out="doc.x_signed_at or doc.date_deadline or ''"/>
+                        <span t-out="doc.x_signed_at or doc.end_datetime or ''"/>
                     </div>
                 </div>
 

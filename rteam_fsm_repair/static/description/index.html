@@ -1,11 +1,11 @@
 <section style="padding:48px 32px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;text-align:center;">
   <div style="max-width:960px;margin:0 auto;">
     <h1 style="font-size:42px;margin:0 0 12px;color:#0A1628;letter-spacing:-0.5px;">FSM + Repair</h1>
-    <p style="font-size:20px;color:#00D4AA;margin:0 0 24px;font-weight:600;">Field Service Repair Workflow for Odoo 19</p>
+    <p style="font-size:20px;color:#00D4AA;margin:0 0 24px;font-weight:600;">Field Service Repair Workflow for Odoo 20</p>
     <p style="font-size:17px;color:#475569;line-height:1.6;max-width:720px;margin:0 auto;">Bridge Odoo Field Service and Repair into one continuous service case. Tablet signatures, instant protocol email, multi-visit history per asset, localized in 8 languages.</p>
     <div style="margin-top:28px;">
       <span style="display:inline-block;color:#00D4AA;border:2px solid #00D4AA;padding:6px 14px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:0.5px;margin:4px;">FREE - LGPL-3</span>
-      <span style="display:inline-block;color:#7C5CFC;border:2px solid #7C5CFC;padding:6px 14px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:0.5px;margin:4px;">Odoo 19 Enterprise</span>
+      <span style="display:inline-block;color:#7C5CFC;border:2px solid #7C5CFC;padding:6px 14px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:0.5px;margin:4px;">Odoo 20 Enterprise</span>
       <span style="display:inline-block;color:#0A1628;border:2px solid #0A1628;padding:6px 14px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:0.5px;margin:4px;">v1.1.0</span>
     </div>
   </div>
@@ -14,7 +14,7 @@
 <section style="padding:48px 32px;background:#fff;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;">
   <div style="max-width:960px;margin:0 auto;">
     <h2 style="font-size:28px;color:#0A1628;margin:0 0 8px;">Why this module exists</h2>
-    <p style="font-size:16px;color:#1a1a1a;line-height:1.65;margin:0 0 16px;">Native Odoo treats Field Service tasks and Repair Orders as two unrelated workflows. In real service operations they're the same case: an engineer visits, can't fix it on-site, the unit goes to a workshop, parts are ordered, a second engineer re-installs after the in-shop work.</p>
+    <p style="font-size:16px;color:#1a1a1a;line-height:1.65;margin:0 0 16px;">Native Odoo treats Field Service visits and Repair Orders as two unrelated workflows. In real service operations they're the same case: an engineer visits, can't fix it on-site, the unit goes to a workshop, parts are ordered, a second engineer re-installs after the in-shop work.</p>
     <p style="font-size:16px;color:#1a1a1a;line-height:1.65;margin:0 0 16px;">Today this means two disconnected records and a manager piecing the timeline together by chatter. <strong>FSM + Repair adds the missing bridge.</strong></p>
     <div style="background:#f4f5f7;border-left:4px solid #00D4AA;padding:18px 22px;margin:24px 0;font-size:15px;color:#0A1628;line-height:1.65;">
       Built initially for a manufacturer of laser-cutting equipment with eight field engineers, RMA loops to OEMs in the US and Germany, and a nine-tier service program. Generalized as a free LGPL-3 module for any service operation that needs the same shape.
@@ -36,7 +36,7 @@
 
     <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
       <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">1.</span> Request Type per visit</h3>
-      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">Every Field Service task is classified as Installation, Repair, Diagnostic, Preventive Maintenance, or RMA. Drives reporting, SLA filtering, and the engineer's mental model of what they're going to do on-site.</p>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">Every field service visit is classified as Installation, Repair, Diagnostic, Preventive Maintenance, or RMA. Drives reporting, SLA filtering, and the engineer's mental model of what they're going to do on-site.</p>
     </div>
 
     <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
@@ -45,7 +45,7 @@
     </div>
 
     <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
-      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">3.</span> Repair tab on the FSM task form</h3>
+      <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">3.</span> Repair tab on the field service visit form</h3>
       <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">A dedicated tab with rich-text Problem Description, Engineer Findings, and Resolution / Work Done. The engineer sees the same form on tablet and desktop, types their notes once, signs, and the protocol is ready.</p>
     </div>
 
@@ -61,12 +61,12 @@
 
     <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
       <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">6.</span> Bridge to Odoo Repair</h3>
-      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">Every FSM task can link to a <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:13px;">repair.order</code>. The repair order is the persistent case-file, the FSM tasks are the visits. One Create Repair Order button on the task spawns a fresh case pre-filled with customer + lot + problem description.</p>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">Every field service visit can link to a <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:13px;">repair.order</code>. The repair order is the persistent case-file, each field service visit is one step of it. One Create Repair Order button on the task spawns a fresh case pre-filled with customer + lot + problem description.</p>
     </div>
 
     <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
       <h3 style="color:#0A1628;font-size:20px;margin:0 0 8px;"><span style="color:#00D4AA;">7.</span> Multi-visit cases</h3>
-      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">A single repair order can host N field visits. Smart-button Field Visits on the repair order shows the count + a filtered list. Smart-button Repair Case on the FSM task jumps back to the case file. Manager has the whole history of an asset in one click.</p>
+      <p style="color:#1a1a1a;font-size:15px;line-height:1.65;margin:0;">A single repair order can host N field visits. Smart-button Field Visits on the repair order shows the count + a filtered list. Smart-button Repair Case on the visit jumps back to the case file. Manager has the whole history of an asset in one click.</p>
     </div>
 
     <div style="background:#fff;border-radius:8px;padding:28px 32px;margin-bottom:20px;">
@@ -81,7 +81,7 @@
     <h2 style="font-size:28px;color:#0A1628;margin:0 0 16px;">Technical reference</h2>
     <p style="color:#475569;font-size:14px;line-height:1.65;margin:0 0 24px;">Exactly what this module adds and where. Useful for developers extending it and for end-users who want to know which form they will see new fields on.</p>
 
-    <h3 style="color:#0A1628;font-size:18px;margin:24px 0 8px;">Model <code style="background:#f4f5f7;padding:2px 8px;border-radius:3px;font-size:14px;">project.task</code> (Field Service tasks)</h3>
+    <h3 style="color:#0A1628;font-size:18px;margin:24px 0 8px;">Model <code style="background:#f4f5f7;padding:2px 8px;border-radius:3px;font-size:14px;">planning.slot</code> (field service visits)</h3>
     <table style="width:100%;border-collapse:collapse;font-size:14px;color:#1a1a1a;">
       <tr style="background:#f4f5f7;"><th style="text-align:left;padding:8px 12px;">Technical name</th><th style="text-align:left;padding:8px 12px;">Type</th><th style="text-align:left;padding:8px 12px;">Visible in</th></tr>
       <tr><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;"><code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">x_request_type</code></td><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;">Selection (Installation / Repair / Diagnostic / Preventive Maintenance / RMA)</td><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;">Repair tab + kanban</td></tr>
@@ -101,23 +101,23 @@
     <h3 style="color:#0A1628;font-size:18px;margin:24px 0 8px;">Model <code style="background:#f4f5f7;padding:2px 8px;border-radius:3px;font-size:14px;">repair.order</code> (Repair Orders)</h3>
     <table style="width:100%;border-collapse:collapse;font-size:14px;color:#1a1a1a;">
       <tr style="background:#f4f5f7;"><th style="text-align:left;padding:8px 12px;">Technical name</th><th style="text-align:left;padding:8px 12px;">Type</th><th style="text-align:left;padding:8px 12px;">Visible in</th></tr>
-      <tr><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;"><code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">fsm_task_ids</code></td><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;">One2many -&gt; <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">project.task</code> (inverse <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">x_repair_order_id</code>)</td><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;">smart-button</td></tr>
+      <tr><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;"><code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">fsm_task_ids</code></td><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;">One2many -&gt; <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">planning.slot</code> (inverse <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">x_repair_order_id</code>)</td><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;">smart-button</td></tr>
       <tr><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;"><code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">fsm_task_count</code></td><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;">Integer (computed)</td><td style="padding:8px 12px;border-bottom:1px solid #e1e4e8;">smart-button counter</td></tr>
     </table>
 
     <h3 style="color:#0A1628;font-size:18px;margin:24px 0 8px;">New page, buttons, smart-buttons</h3>
     <ul style="color:#1a1a1a;font-size:14px;line-height:1.7;padding-left:22px;">
-      <li>New <strong>"Repair" tab</strong> in <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">project.view_task_form2</code> notebook (visible only when <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">is_fsm == True</code>)</li>
+      <li>New <strong>"Repair" tab</strong> in <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">planning.planning_view_form</code> notebook (<code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">planning_field_service</code>)</li>
       <li>Button <strong>"Create Repair Order"</strong> in Repair tab (visible if no repair order linked yet)</li>
       <li>Button <strong>"Send Repair Protocol"</strong> in Repair tab (visible if customer signature captured)</li>
-      <li>Smart-button <strong>"Repair Case"</strong> in <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">project.task</code> button_box (visible if linked)</li>
+      <li>Smart-button <strong>"Repair Case"</strong> in <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">planning.slot</code> button_box (visible if linked)</li>
       <li>Smart-button <strong>"Field Visits"</strong> with count in <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">repair.order</code> button_box (visible if count &gt; 0)</li>
       <li>Kanban inherit on <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">project.view_task_kanban</code> to surface <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">x_request_type</code></li>
     </ul>
 
     <h3 style="color:#0A1628;font-size:18px;margin:24px 0 8px;">New records</h3>
     <ul style="color:#1a1a1a;font-size:14px;line-height:1.7;padding-left:22px;">
-      <li><code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">ir.actions.report</code> <strong>Repair Protocol</strong>: QWeb PDF, bound to <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">project.task</code> via Print menu</li>
+      <li><code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">ir.actions.report</code> <strong>Repair Protocol</strong>: QWeb PDF, bound to <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">planning.slot</code> via Print menu</li>
       <li><code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">mail.template</code> <strong>FSM: Repair Protocol</strong>: branded HTML body, "View in Odoo" CTA, PDF auto-attached</li>
       <li><code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">post_init_hook</code> links the report to the mail template's <code style="background:#f4f5f7;padding:1px 5px;border-radius:3px;font-size:13px;">report_template_ids</code></li>
     </ul>
@@ -133,7 +133,7 @@
       <li style="padding:10px 0;border-bottom:1px solid #e1e4e8;"><strong style="color:#0A1628;">Manufacturers and OEMs</strong> that build, sell, and service their own equipment (laser cutters, packaging machines, industrial printers, medical devices)</li>
       <li style="padding:10px 0;border-bottom:1px solid #e1e4e8;"><strong style="color:#0A1628;">Equipment dealers</strong> with after-sale service contracts and a mix of in-field and in-shop repair</li>
       <li style="padding:10px 0;border-bottom:1px solid #e1e4e8;"><strong style="color:#0A1628;">Field service teams</strong> running tiered service programs (on-site visit -&gt; in-shop repair -&gt; RMA escalation to OEM)</li>
-      <li style="padding:10px 0;"><strong style="color:#0A1628;">Any Odoo deployment</strong> using <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">industry_fsm</code> AND <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">repair</code> AND <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">helpdesk_fsm</code> together</li>
+      <li style="padding:10px 0;"><strong style="color:#0A1628;">Any Odoo deployment</strong> using <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">planning_field_service</code> AND <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:14px;">repair</code> together</li>
     </ul>
   </div>
 </section>
@@ -142,10 +142,9 @@
   <div style="max-width:960px;margin:0 auto;">
     <h2 style="font-size:28px;color:#0A1628;margin:0 0 16px;">Configuration</h2>
     <ol style="color:#1a1a1a;font-size:16px;line-height:1.7;padding-left:24px;">
-      <li style="margin:10px 0;">Apps -&gt; Update Apps List -&gt; install <strong>FSM + Repair</strong>. Dependencies <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">industry_fsm</code> + <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">helpdesk_fsm</code> + <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">repair</code> + <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">maintenance</code> are pulled automatically.</li>
-      <li style="margin:10px 0;">Project -&gt; Settings -&gt; create a Field Service project, add the recommended kanban stages: <strong>Diagnostic -&gt; Quote -&gt; Awaiting Parts -&gt; In Progress -&gt; Testing -&gt; Closed</strong>.</li>
+      <li style="margin:10px 0;">Apps -&gt; Update Apps List -&gt; install <strong>FSM + Repair</strong>. Dependencies <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">planning_field_service</code> + <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">repair</code> + <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">maintenance</code> are pulled automatically.</li>
       <li style="margin:10px 0;">Equipment -&gt; create the units you service (one record per serial number). Link them in <code style="background:#f4f5f7;padding:2px 6px;border-radius:3px;font-size:14px;">maintenance.equipment</code>.</li>
-      <li style="margin:10px 0;">Open any FSM task: the <strong>Repair</strong> tab is right there with all the new fields.</li>
+      <li style="margin:10px 0;">Open any field service visit: the <strong>Repair</strong> tab is right there with all the new fields.</li>
     </ol>
   </div>
 </section>
@@ -156,7 +155,7 @@
     <p style="color:#1a1a1a;font-size:15px;line-height:1.65;">Out of scope for this module (consider as separate / native Odoo configuration):</p>
     <ul style="color:#1a1a1a;font-size:15px;line-height:1.7;padding-left:22px;">
       <li>Role-based access groups (configure standard FSM/Repair groups via Settings -&gt; Users)</li>
-      <li>Multi-currency parts costing per repair (handled natively by <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:13px;">industry_fsm_sale</code> + Odoo Accounting)</li>
+      <li>Multi-currency parts costing per repair (handled natively by <code style="background:#fff;padding:2px 6px;border-radius:3px;font-size:13px;">planning_field_service_sale_stock</code> + Odoo Accounting)</li>
       <li>Sign module integration with certified-PDF audit trail (planned for a separate companion module)</li>
       <li>RMA shipping tracking to external OEMs (planned for a separate companion module)</li>
     </ul>

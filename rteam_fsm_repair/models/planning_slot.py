@@ -12,8 +12,10 @@ REQUEST_TYPES = [
 ]
 
 
-class ProjectTask(models.Model):
-    _inherit = "project.task"
+class PlanningSlot(models.Model):
+    # Odoo 20 plans a field service visit as a planning.slot
+    # (planning_field_service); up to 19.0 it was an industry_fsm task.
+    _inherit = "planning.slot"
 
     x_request_type = fields.Selection(
         selection=REQUEST_TYPES,
@@ -63,7 +65,7 @@ class ProjectTask(models.Model):
         index=True,
         help=(
             "Persistent repair case this on-site visit belongs to. One repair "
-            "order can span multiple FSM visits + in-shop work + RMA escalation."
+            "order can span multiple field visits + in-shop work + RMA escalation."
         ),
     )
 
@@ -74,22 +76,12 @@ class ProjectTask(models.Model):
                 rec.x_signed_at = fields.Datetime.now()
 
     def _action_url(self):
-        """Return a deep-link to this task's form view (used by mail templates)."""
+        """Return a deep-link to this visit's form view (used by mail templates)."""
         self.ensure_one()
-        base = self.get_base_url()
-        action = self.env.ref(
-            "industry_fsm.project_task_action_fsm",
-            raise_if_not_found=False,
-        ) or self.env.ref(
-            "project.action_view_task",
-            raise_if_not_found=False,
-        )
-        if not action:
-            return base
-        return f"{base}/odoo/action-{action.id}/{self.id}"
+        return f"{self.get_base_url()}/odoo/planning.slot/{self.id}"
 
     def action_create_repair_order(self):
-        """Create a new repair.order from this FSM task and link them.
+        """Create a new repair.order from this visit and link them.
 
         Pre-fills customer + product (if equipment has one resolvable via lot)
         + lot/serial. Opens the new repair.order in form view for the user
@@ -121,7 +113,7 @@ class ProjectTask(models.Model):
     def action_open_repair_order(self):
         self.ensure_one()
         if not self.x_repair_order_id:
-            raise UserError(_("This task is not linked to any Repair Order."))
+            raise UserError(_("This visit is not linked to any Repair Order."))
         return {
             "type": "ir.actions.act_window",
             "name": _("Repair Order"),
@@ -146,7 +138,7 @@ class ProjectTask(models.Model):
             raise_if_not_found=False,
         )
         ctx = {
-            "default_model": "project.task",
+            "default_model": "planning.slot",
             "default_res_ids": self.ids,
             "default_use_template": True,
             "default_template_id": template.id,
