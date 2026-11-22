@@ -154,6 +154,24 @@ Module dependencies are pulled automatically: ``planning_field_service``,
 ``repair``, ``maintenance``, ``stock``, ``mail``.
 
 
+Upgrading a 19.0 database
+=========================
+
+Odoo 20 plans a field service visit as a planning shift; on 19.0 the Repair
+data of this module sat on the field service task. ``-u rteam_fsm_repair`` with the 20.0 code
+carries it over:
+
+- a task with exactly one shift linked to it (``planning_slot.task_id``) hands
+  its Repair values and both signatures to that shift;
+- any other task keeps its Repair data as a note in its own chatter, with the
+  signatures attached, and its repair order gets a note linking to the visit;
+- every task that held Repair data is listed in the table
+  ``rteam_fsm_repair_legacy_task`` with where its data went.
+
+Run the upgrade on a copy first and read the server log line from
+``rteam_fsm_repair`` that counts what was moved.
+
+
 Configuration
 =============
 

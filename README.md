@@ -41,6 +41,25 @@ Then in Odoo: Apps &rarr; Update Apps List &rarr; install
 Module dependencies are pulled automatically: `planning_field_service`,
 `repair`, `maintenance`, `stock`, `mail`.
 
+## Upgrading a 19.0 database
+
+Odoo 20 plans a field service visit as a planning shift; on 19.0 this module's
+Repair data sat on the field service task. When the upgraded database runs
+`-u rteam_fsm_repair` with the 20.0 code, the migration
+(`migrations/20.0.1.1.3/end-migrate.py`) carries it over:
+
+- a task with exactly one shift linked to it (`planning_slot.task_id`, from
+  `project_forecast`) hands its Repair values and both signatures to that shift;
+- any other task keeps its Repair data as a note in its own chatter, with the
+  signatures attached, and its repair order gets a note linking to the visit;
+- every task that held Repair data is listed in the table
+  `rteam_fsm_repair_legacy_task` with its values and where they went
+  (`slot_id`, `outcome`). The table stays in the database.
+
+How Odoo links a converted task to its shift is not documented: run the
+upgrade on a copy first and check the server log line from `rteam_fsm_repair`
+that counts what was moved.
+
 ## Roadmap (not in MVP)
 
 - Role-based access groups (Engineer profile with start/finish-only rights)

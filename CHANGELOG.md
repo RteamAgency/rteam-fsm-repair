@@ -11,9 +11,9 @@ Format follows [Keep a Changelog](https://keepachangelog.com/).
 - `ir.actions.report.report_file` is gone in Odoo 20; icons are Material Symbols (`upgrade_code`). Visit links are `/odoo/planning.slot/<id>`.
 - Tests: 10 on Odoo 20.0 enterprise, including the protocol report and email rendered for a visit and the repair order created from one.
 
-### Not covered
+### Added
 
-- Moving a 19.0 database: Odoo's upgrade turns FSM tasks into shifts; the Repair values on `project.task` need a migration to the matching `planning.slot` once that mapping is known.
+- Upgrading a 19.0 database (`migrations/20.0.1.1.3/end-migrate.py`): the Repair data of field service tasks follows the visit. A task with exactly one shift linked to it (`planning_slot.task_id`) hands its values and signatures to that shift; any other task keeps them as a chatter note with the signatures attached, and its repair order gets a note linking to the visit. Every such task is listed in `rteam_fsm_repair_legacy_task` with where its data went. Runs at end-migrate, before the ORM drops the old `project_task` columns. Checked on a 20.0 enterprise stand with a database put in the post-upgrade state: one shift, two shifts, no shift, signature only, a task without Repair data.
 
 ## 1.1.3 - 2026-05-09 - Fix invisible hero text on apps.odoo.com listing
 
